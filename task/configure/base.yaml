@@ -1,0 +1,13 @@
+---
+- name: Configure shell
+  import_tasks: ./shell.yaml
+- name: Configure Ghostty
+  import_tasks: ./ghostty.yaml
+- name: Configure git
+  import_tasks: ./git.yaml
+- name: Configure k9s
+  import_tasks: ./k9s.yaml
+- name: Configure zed
+  import_tasks: ./zed.yaml
+- name: Configure neovim
+  import_tasks: ./nvim.yaml

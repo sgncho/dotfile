@@ -1,0 +1,92 @@
+[user]
+  name = Seunggeun Cho
+  email = git@sgncho.com
+  signingkey = ~/.ssh/id_ed25519.pub
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  line-numbers = true
+
+[commit]
+{% if git_version is version('2.34.0', '>=') %}
+  gpgsign = true
+{% endif %}
+  verbose = true
+
+[column]
+  ui = always
+
+[branch]
+  sort = -committerdate
+
+{% if git_version is version('2.34.0', '>=') %}
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  allowedSignersFile = ~/.ssh/.allowed-signers
+{% endif %}
+
+[tag]
+  gpgSign = true
+  sort = version:refname
+
+[merge]
+{% if git_version is version('2.35.0', '>=') %}
+  conflictStyle = zdiff3
+{% else %}
+  conflictStyle = diff3
+{% endif %}
+
+[core]
+  editor = $EDITOR
+  excludesfile = ~/.config/git/ignore
+  autocrlf = input
+  pager = delta
+
+[diff]
+  algorithm = histogram
+{% if git_version is version('2.17.0', '>=') %}
+  colorMoved = plain
+{% endif %}
+  mnemonicPrefix = true
+  renames = true
+
+[alias]
+  graph = log --graph --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)%n' --abbrev-commit --date=relative --branches
+  ch = "!git checkout $(git branch | fzf)"
+  a = "!git add $(git status -s | fzf -m | awk '{print $2}')"
+
+[pull]
+  ff = only
+
+[push]
+{% if git_version is version('2.37.0', '>=') %}
+  autoSetupRemote = true
+{% endif %}
+  followTags = true
+
+[rebase]
+  autoSquash = true
+  autoStash = true
+{% if git_version is version('2.38.0', '>=') %}
+  updateRefs = true
+{% endif %}
+
+{% if git_version is version('2.28.0', '>=') %}
+[init]
+  defaultBranch = main
+{% endif %}
+{% if git_version is version('2.34.0', '>=') %}
+[help]
+  autocorrect = prompt
+{% endif %}
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true

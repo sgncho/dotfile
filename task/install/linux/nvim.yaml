@@ -1,0 +1,23 @@
+---
+- block:
+  - name: Remove previous neovim data
+    file:
+      path: "{{ data_home }}/nvim"
+      state: absent
+  - name: Create nvim directory
+    file:
+      path: "{{ data_home }}/nvim"
+      state: directory
+  - name: Install nvim via tarball
+    unarchive:
+      src: "https://github.com/neovim/neovim/releases/download/v{{ nvim_version }}/nvim-linux-x86_64.tar.gz"
+      dest: "{{ data_home }}/nvim"
+      remote_src: yes
+      extra_opts:
+        - --strip-components=1
+  - name: Create symlink for delta
+    file:
+      src: "{{ data_home }}/nvim/bin/nvim"
+      dest: "{{ binary_home }}/nvim"
+      state: link
+      force: yes

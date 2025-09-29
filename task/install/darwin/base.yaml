@@ -1,0 +1,11 @@
+---
+- name: Install packages
+  homebrew:
+    name:
+      - age
+      - bat
+      - git-delta
+      - eza
+      - nvim
+      - gh
+    state: present

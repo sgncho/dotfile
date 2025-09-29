@@ -1,0 +1,19 @@
+CONFIG_DIR="${HOME}/.rc.d"
+
+if [ -n "$ZSH_VERSION" ]; then
+    autoload -U colors && colors
+    PS1="%{%{$fg[green]%}%}%m%{%{$reset_color%}%} %{%{$fg[blue]%}%}%~%{%{$reset_color%}%}
+$ "
+    CONFIG_EXTS=(sh  zsh)
+elif [ -n "$BASH_VERSION" ]; then
+    PS1='\[\e[32m\]\h\[\e[0m\] \[\e[34m\]\w\[\e[0m\]\n$ '
+    CONFIG_EXTS="sh  bash"
+fi
+
+for ext in $CONFIG_EXTS; do
+    for file in "${CONFIG_DIR}"/*."${ext}"; do
+        [ -f "$file" ] && [ -r "$file" ] && source "$file" || true
+    done
+done
+
+[ -f "${HOME}/.rc.local" ] && source "${HOME}/.rc.local"

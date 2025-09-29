@@ -1,0 +1,23 @@
+---
+- block:
+    - name: Remove previous delta data
+      file:
+        path: "{{ data_home }}/delta"
+        state: absent
+    - name: Create delta directory
+      file:
+        path: "{{ data_home }}/delta"
+        state: directory
+    - name: Install delta via tarball
+      unarchive:
+        src: "https://github.com/dandavison/delta/releases/download/{{ delta_version }}/delta-{{ delta_version }}-x86_64-unknown-linux-gnu.tar.gz"
+        dest: "{{ data_home }}/delta"
+        remote_src: yes
+        extra_opts:
+          - --strip-components=1
+    - name: Create symlink for delta
+      file:
+        src: "{{ data_home }}/delta/delta"
+        dest: "{{ binary_home }}/delta"
+        state: link
+        force: yes

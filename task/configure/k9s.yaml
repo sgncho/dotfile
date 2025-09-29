@@ -1,0 +1,21 @@
+---
+- block:
+  - name: Create k9s config directory
+    file:
+      path: "{{ config_home }}/k9s"
+      state: directory
+    when: ansible_system == 'Darwin'
+  - name: Create symlink config.yaml
+    file:
+      src: "{{ dotfile_home }}/config/k9s/config.yaml"
+      dest: "{{ config_home }}/k9s/config.yaml"
+      state: link
+      force: yes
+    when: ansible_system == 'Darwin'
+  - name: Create symlink skins
+    file:
+      src: "{{ dotfile_home }}/config/k9s/skins"
+      dest: "{{ config_home }}/k9s/skins"
+      state: link
+      force: yes
+    when: ansible_system == 'Darwin'

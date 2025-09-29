@@ -1,0 +1,23 @@
+---
+- block:
+    - name: Remove previous gh data
+      file:
+        path: "{{ data_home }}/gh"
+        state: absent
+    - name: Create gh directory
+      file:
+        path: "{{ data_home }}/gh"
+        state: directory
+    - name: Install gh via tarball
+      unarchive:
+        src: "https://github.com/cli/cli/releases/download/v{{ gh_version }}/gh_{{ gh_version }}_linux_amd64.tar.gz"
+        dest: "{{ data_home }}/gh"
+        remote_src: yes
+        extra_opts:
+          - --strip-components=1
+    - name: Create symlink for gh
+      file:
+        src: "{{ data_home }}/gh/bin/gh"
+        dest: "{{ binary_home }}/gh"
+        state: link
+        force: yes

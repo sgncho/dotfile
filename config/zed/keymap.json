@@ -1,0 +1,79 @@
+[
+    {
+        "bindings": {
+            "alt-/": "agent::ToggleFocus",
+            "ctrl-a h": "workspace::ActivatePaneLeft",
+            "ctrl-a j": "workspace::ActivatePaneDown",
+            "ctrl-a k": "workspace::ActivatePaneUp",
+            "ctrl-a l": "workspace::ActivatePaneRight"
+        }
+    },
+    {
+        "context": "VimControl || Terminal || Dock || Editor",
+        "bindings": {
+            "ctrl-j": "workspace::ToggleBottomDock",
+            "ctrl-h": "workspace::ToggleLeftDock",
+            "ctrl-l": "workspace::ToggleRightDock"
+        }
+    },
+    {
+        "context": "(vim_mode == normal || vim_mode == visual) && (vim_operator == none || vim_operator == n) && !VimWaiting",
+        "bindings": {
+            "space g p": "git_panel::ToggleFocus",
+            "space g d": "git::Diff",
+            "space g r": "git::Restore",
+            "space g R": "git::RestoreFile",
+            "space g s": "git::ToggleStaged",
+            "space g b": "git::Branch",
+            "space g n": "git::StageAndNext",
+            "space g c": "git::ExpandCommitEditor",
+            "space a c": "agent::ToggleFocus",
+            "space p p": "pane::RevealInProjectPanel",
+            "space p s": "project_symbols::Toggle",
+            "space p f": "file_finder::Toggle",
+            "space a i": "assistant::InlineAssist",
+            "space f f": "file_finder::Toggle",
+            "space f s": "outline::Toggle"
+        }
+    },
+    {
+        "context": "Editor && edit_prediction",
+        "bindings": {
+            "alt-tab": "editor::AcceptEditPrediction"
+        }
+    },
+    {
+        "context": "Editor",
+        "bindings": {
+            "tab": "editor::Tab"
+        }
+    },
+    {
+        "context": "Editor && showing_completions",
+        "bindings": {
+            "tab": "editor::ComposeCompletion"
+        }
+    },
+    {
+        "context": "(VimControl && !menu) || vim_mode == replace || vim_mode == waiting",
+        "bindings": {
+            "tab": "vim::Tab"
+        }
+    },
+    {
+        "context": "vim_mode == literal",
+        "bindings": {
+            "tab": ["vim::Literal", ["tab", "\u0009"]]
+        }
+    },
+    {
+        "context": "(VimControl || (!Editor && !Terminal))",
+        "bindings": {
+            "ctrl-a =": "vim::ResetPaneSizes",
+            "ctrl-a +": "vim::ResizePaneUp",
+            "ctrl-a -": "vim::ResizePaneDown",
+            "ctrl-a <": "vim::ResizePaneLeft",
+            "ctrl-a >": "vim::ResizePaneRight"
+        }
+    }
+]

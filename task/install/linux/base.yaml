@@ -1,0 +1,13 @@
+---
+- name: Install age
+  import_tasks: ./age.yaml
+- name: Install bat
+  import_tasks: ./bat.yaml
+- name: Install delta
+  import_tasks: ./delta.yaml
+- name: Install eza
+  import_tasks: ./eza.yaml
+- name: Install neovim
+  import_tasks: ./nvim.yaml
+- name: Install Github CLI
+  import_tasks: ./gh.yaml

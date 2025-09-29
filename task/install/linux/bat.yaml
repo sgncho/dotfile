@@ -1,0 +1,23 @@
+---
+- block:
+    - name: Remove previous bat data
+      file:
+        path: "{{ data_home }}/bat"
+        state: absent
+    - name: Create bat data directory
+      file:
+        path: "{{ data_home }}/bat"
+        state: directory
+    - name: Download and extract bat
+      unarchive:
+        src: "https://github.com/sharkdp/bat/releases/download/v{{ bat_version }}/bat-v{{ bat_version }}-x86_64-unknown-linux-gnu.tar.gz"
+        dest: "{{ data_home }}/bat"
+        remote_src: yes
+        extra_opts:
+          - --strip-components=1
+    - name: Create symlink for bat binary
+      file:
+        src: "{{ data_home }}/bat/bat"
+        dest: "{{ binary_home }}/bat"
+        state: link
+        force: yes

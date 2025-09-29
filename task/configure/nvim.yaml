@@ -1,0 +1,12 @@
+---
+- block:
+  - name: Create nvim config directory
+    file:
+      path: "{{ config_home }}/nvim"
+      state: directory
+  - name: Create symlink configuration folder
+    file:
+      src: "{{ dotfile_home }}/config/nvim"
+      dest: "{{ config_home }}/nvim"
+      state: link
+      force: yes

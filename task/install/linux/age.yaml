@@ -1,0 +1,29 @@
+---
+- block:
+    - name: Remove previous age data
+      file:
+        path: "{{ data_home }}/age"
+        state: absent
+    - name: Create age directory
+      file:
+        path: "{{ data_home }}/age"
+        state: directory
+    - name: Install age via tarball
+      unarchive:
+        src: "https://github.com/FiloSottile/age/releases/download/v{{ age_version }}/age-v{{ age_version }}-linux-amd64.tar.gz"
+        dest: "{{ data_home }}/age"
+        remote_src: yes
+        extra_opts:
+          - --strip-components=1
+    - name: Create symlink for age
+      file:
+        src: "{{ data_home }}/age/age"
+        dest: "{{ binary_home }}/age"
+        state: link
+        force: yes
+    - name: Create symlink for age-keygen
+      file:
+        src: "{{ data_home }}/age/age-keygen"
+        dest: "{{ binary_home }}/age-keygen"
+        state: link
+        force: yes

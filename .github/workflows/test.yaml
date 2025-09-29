@@ -1,0 +1,32 @@
+name: Test dotfile bootstrap
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  test-end-to-end:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y git curl
+      - name: Test init.sh script
+        run: |
+          chmod +x script/init.sh
+          bash -c "
+            mkdir -p \$HOME
+
+            # Run the bootstrap script
+            cd script && ./init.sh
+          "
+      - name: Upload logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bootstrap-logs-${{ matrix.os }}
+          path: |
+            test_home/.ansible/
+            *.log
