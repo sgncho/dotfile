@@ -17,6 +17,9 @@ if command -v zellij >/dev/null 2>&1; then
     alias tm='zellij'
 fi
 
-if command -v vim >/dev/null 2>&1; then
+if command -v nvim >/dev/null 2>&1; then
+    alias vim='nvim'
+    alias vi='nvim'
+elif command -v vim >/dev/null 2>&1; then
     alias vi='vim'
 fi

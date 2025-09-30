@@ -1,6 +1,11 @@
 # Set PATH
 export PATH="$HOME/.local/bin:$PATH"
 
+# Homebrew setup (for login shell)
+if [ -f /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # Set language environment
 export LANG=en_US.UTF-8
 
@@ -55,9 +60,4 @@ if command -v bat &>/dev/null; then
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 else
     export MANPAGER="less -R"
-fi
-
-# Homebrew setup (for login shell)
-if [ -f /opt/homebrew/bin/brew ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
