@@ -1,239 +1,240 @@
 {
-    /* Autosave */
-    "ssh_connections": [],
-    "autosave": {
-        "after_delay": {
-            "milliseconds": 400
+  /* Autosave */
+  "ssh_connections": [],
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 400
+    }
+  },
+
+  "show_edit_predictions": true,
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+
+  /* Git panel */
+  "git_panel": {
+    "dock": "right"
+  },
+
+  /* Restore on Startup */
+  "restore_on_startup": "none",
+
+  /* Buffer */
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_size": 13,
+  "buffer_line_height": "comfortable",
+
+  /* Edit Predictions */
+  "edit_predictions": {
+    "mode": "subtle",
+    "enabled_in_text_threads": false
+  },
+
+  "cursor_blink": false,
+
+  /* Editor Scrollbar */
+  "scrollbar": {
+    "show": "never"
+  },
+
+  /* Editor Tabs */
+  "tabs": {
+    "close_position": "left",
+    "file_icons": true,
+    "git_status": true
+  },
+
+  /* Formmatter */
+  "formatter": null,
+
+  /* File Types */
+  "file_types": {
+    "JSONC": ["*.json", "*.jsonl"]
+  },
+
+  /* Diagnostics */
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+      "min_column": 110
+    }
+  },
+
+  /* Icon Theme */
+  "icon_theme": "Zed (Default)",
+
+  /* Inlay Hints */
+  "inlay_hints": {
+    "enabled": true
+  },
+
+  /* Languages */
+  "languages": {
+    "HTML": {
+      "tab_size": 2
+    },
+    "Git Config": {
+      "tab_size": 2
+    },
+    "CSS": {
+      "tab_size": 2
+    },
+    "C++": {
+      "tab_size": 2
+    },
+    "C": {
+      "tab_size": 2
+    },
+    "YAML": {
+      "tab_size": 2
+    },
+    "JSON": {
+      "tab_size": 2
+    },
+    "JSONC": {
+      "tab_size": 2
+    },
+    "Markdown": {
+      "show_edit_predictions": true,
+      "soft_wrap": "bounded",
+      "tab_size": 2
+    },
+    "Make": {
+      "hard_tabs": true
+    },
+    "Python": {
+      "language_servers": ["ty", "ruff"],
+      "formatter": [
+        {
+          "code_actions": {
+            "source.fixAll.ruff": true,
+            "source.organizeImports.ruff": true
+          }
+        },
+        {
+          "language_server": {
+            "name": "ruff"
+          }
         }
+      ]
     },
-
-    "show_edit_predictions": true,
-    "features": {
-        "edit_prediction_provider": "zed"
-    },
-
-    /* Git panel */
-    "git_panel": {
-        "dock": "right"
-    },
-
-    /* Restore on Startup */
-    "restore_on_startup": "none",
-
-    /* Buffer */
-    "buffer_font_family": "JetBrains Mono",
-    "buffer_font_size": 13,
-    "buffer_line_height": "comfortable",
-
-    /* Edit Predictions */
-    "edit_predictions": {
-        "mode": "subtle",
-        "enabled_in_text_threads": false
-    },
-
-    "cursor_blink": false,
-
-    /* Editor Scrollbar */
-    "scrollbar": {
-        "show": "never"
-    },
-
-    /* Editor Tabs */
-    "tabs": {
-        "close_position": "left",
-        "file_icons": true,
-        "git_status": true
-    },
-
-    /* Formmatter */
-    "formatter": null,
-
-    /* File Types */
-    "file_types": {
-        "JSONC": ["*.json", "*.jsonl"]
-    },
-
-    /* Diagnostics */
-    "diagnostics": {
-        "inline": {
-            "enabled": true,
-            "min_column": 110
+    "Shell Script": {
+      "formatter": {
+        "external": {
+          "command": "shfmt",
+          "arguments": ["--filename", "{buffer_path}", "--indent", "4"]
         }
+      }
+    }
+  },
+
+  "lsp": {
+    "pyright": {
+      "settings": {
+        "python.analysis": {
+          "diagnosticMode": "workspace",
+          "typeCheckingMode": "standard"
+        },
+        "python": {
+          "pythonPath": ".venv/bin/python"
+        }
+      }
     },
-
-    /* Icon Theme */
-    "icon_theme": "Zed (Default)",
-
-    /* Inlay Hints */
-    "inlay_hints": {
-        "enabled": true
-    },
-
-    /* Languages */
-    "languages": {
-        "HTML": {
-            "tab_size": 2
-        },
-        "Git Config": {
-            "tab_size": 2
-        },
-        "CSS": {
-            "tab_size": 2
-        },
-        "C++": {
-            "tab_size": 2
-        },
-        "C": {
-            "tab_size": 2
-        },
-        "YAML": {
-            "tab_size": 2
-        },
-        "Markdown": {
-            "show_edit_predictions": true,
-            "soft_wrap": "bounded",
-            "tab_size": 2
-        },
-        "Make": {
-            "hard_tabs": true
-        },
-        "Python": {
-            "language_servers": ["ty", "ruff"],
-            "formatter": [
-                {
-                    "code_actions": {
-                        "source.fixAll.ruff": true,
-                        "source.organizeImports.ruff": true
-                    }
-                },
-                {
-                    "language_server": {
-                        "name": "ruff"
-                    }
-                }
+    "ruff": {
+      "initialization_options": {
+        "settings": {
+          "lint": {
+            "extendSelect": [
+              "E", // pycodestyle Error - PEP 8 style errors
+              "W", // pycodestyle Warning - PEP 8 style warnings
+              "F", // pyflakes - unused imports, variables, etc.
+              "S", // flake8 bandit - security vulnerability checks
+              "LOG", // flake8 logging - logging related issues
+              "G", // flake8 logging format - logging format checks
+              "Q", // flake8 quotes - quote style consistency
+              "A", // flake8 builtins - prevent shadowing builtin names
+              "B", // flake8 bugbear - detect common bug patterns
+              "C4", // flake8 comprehensions - comprehension optimization
+              "PLE", // pylint Error - pylint error rules
+              "PLW", // pylint Warning - pylint warning rules
+              "I", // isort - import sorting and grouping
+              "RUF" // ruff specific - ruff-specific rules
             ]
-        },
-        "Shell Script": {
-            "formatter": {
-                "external": {
-                    "command": "shfmt",
-                    "arguments": [
-                        "--filename",
-                        "{buffer_path}",
-                        "--indent",
-                        "4"
-                    ]
-                }
-            }
+          },
+          "format": {
+            "quote-style": "double" // use double quotes for strings
+          }
         }
+      }
+    }
+  },
+
+  /* Wrap Guides (Verical Rulers) */
+  "wrap_guides": [88, 120],
+
+  /* Telemetry */
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+
+  /* Terminal */
+  "terminal": {
+    "detect_venv": {
+      "on": {
+        "directories": [".venv"],
+        "activate_script": "default"
+      }
     },
+    "default_width": 720
+  },
 
-    "lsp": {
-        "pyright": {
-            "settings": {
-                "python.analysis": {
-                    "diagnosticMode": "workspace",
-                    "typeCheckingMode": "standard"
-                },
-                "python": {
-                    "pythonPath": ".venv/bin/python"
-                }
-            }
-        },
-        "ruff": {
-            "initialization_options": {
-                "settings": {
-                    "lint": {
-                        "extendSelect": [
-                            "E", // pycodestyle Error - PEP 8 style errors
-                            "W", // pycodestyle Warning - PEP 8 style warnings
-                            "F", // pyflakes - unused imports, variables, etc.
-                            "S", // flake8 bandit - security vulnerability checks
-                            "LOG", // flake8 logging - logging related issues
-                            "G", // flake8 logging format - logging format checks
-                            "Q", // flake8 quotes - quote style consistency
-                            "A", // flake8 builtins - prevent shadowing builtin names
-                            "B", // flake8 bugbear - detect common bug patterns
-                            "C4", // flake8 comprehensions - comprehension optimization
-                            "PLE", // pylint Error - pylint error rules
-                            "PLW", // pylint Warning - pylint warning rules
-                            "I", // isort - import sorting and grouping
-                            "RUF" // ruff specific - ruff-specific rules
-                        ]
-                    },
-                    "format": {
-                        "quote-style": "double" // use double quotes for strings
-                    }
-                }
-            }
-        }
+  /* Theme */
+  "theme": {
+    "mode": "light",
+    "light": "Ayu Light",
+    "dark": "Ayu Dark"
+  },
+
+  /* Vim */
+  "vim_mode": true,
+  "relative_line_numbers": true,
+
+  /* Project Panel */
+  "project_panel": {
+    "dock": "left"
+  },
+
+  /* Assistant Panel */
+  "agent": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4.1"
     },
-
-    /* Wrap Guides (Verical Rulers) */
-    "wrap_guides": [88, 120],
-
-    /* Telemetry */
-    "telemetry": {
-        "diagnostics": false,
-        "metrics": false
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4.1"
     },
-
-    /* Terminal */
-    "terminal": {
-        "detect_venv": {
-            "on": {
-                "directories": [".venv"],
-                "activate_script": "default"
-            }
-        },
-        "default_width": 720
+    "commit_message_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4.1"
     },
+    "always_allow_tool_actions": false,
+    "default_profile": "minimal",
+    "model_parameters": [
+      {
+        "temperature": 0.3
+      }
+    ]
+  },
 
-    /* Theme */
-    "theme": {
-        "mode": "light",
-        "light": "Ayu Light",
-        "dark": "Ayu Dark"
-    },
+  /* UI Font */
+  "ui_font_family": ".SystemUIFont",
+  "ui_font_fallbacks": ["Helvetica Neue"],
+  "ui_font_size": 16,
 
-    /* Vim */
-    "vim_mode": true,
-    "relative_line_numbers": true,
-
-    /* Project Panel */
-    "project_panel": {
-        "dock": "left"
-    },
-
-    /* Assistant Panel */
-    "agent": {
-        "default_model": {
-            "provider": "copilot_chat",
-            "model": "gpt-4.1"
-        },
-        "inline_assistant_model": {
-            "provider": "copilot_chat",
-            "model": "gpt-4.1"
-        },
-        "commit_message_model": {
-            "provider": "google",
-            "model": "gemini-2.5-flash-preview-04-17"
-        },
-        "always_allow_tool_actions": false,
-        "default_profile": "minimal",
-        "model_parameters": [
-            {
-                "temperature": 0.3
-            }
-        ]
-    },
-
-    /* UI Font */
-    "ui_font_family": ".SystemUIFont",
-    "ui_font_fallbacks": ["Helvetica Neue"],
-    "ui_font_size": 16,
-
-    /* Misc. */
-    "auto_signature_help": true,
-    "use_system_window_tabs": true
+  /* Misc. */
+  "auto_signature_help": true,
+  "use_system_window_tabs": true
 }
