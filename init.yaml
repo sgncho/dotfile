@@ -11,6 +11,7 @@
     eza_version: "0.23.3"
     nvim_version: "0.11.4"
     gh_version: "2.80.0"
+    ripgrep_version: "14.1.1"
   tasks:
     - import_tasks: task/install/linux/base.yaml
       tags: install

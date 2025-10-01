@@ -11,3 +11,5 @@
   import_tasks: ./nvim.yaml
 - name: Install Github CLI
   import_tasks: ./gh.yaml
+- name: Install ripgrep
+  import_tasks: ./ripgrep.yaml

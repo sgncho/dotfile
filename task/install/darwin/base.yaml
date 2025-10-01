@@ -8,4 +8,5 @@
       - eza
       - nvim
       - gh
+      - ripgrep
     state: present

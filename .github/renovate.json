@@ -51,6 +51,14 @@
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "cli/cli",
       "extractVersionTemplate": "^v?(?<version>.*)$"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["^init\\.yaml$"],
+      "matchStrings": ["ripgrep_version:\\s*\"(?<currentValue>.*?)\""],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "BurntSushi/ripgrep",
+      "extractVersionTemplate": "^v?(?<version>.*)$"
     }
   ]
 }
