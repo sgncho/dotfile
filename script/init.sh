@@ -41,7 +41,7 @@ check_uv() {
     if ! check_cmd uv; then
         curl -LsSf https://astral.sh/uv/install.sh | sh -
         # shellcheck disable=SC1091
-        source "$HOME/.local/bin/env"
+        . "$HOME/.local/bin/env"
         need_cmd uv
     fi
 }
@@ -50,7 +50,7 @@ check_ansible() {
     if ! check_cmd ansible; then
         uv tool install --with-executables-from ansible-core ansible >/dev/null 2>&1
         # shellcheck disable=SC1091
-        source "$HOME/.local/bin/env"
+        . "$HOME/.local/bin/env"
         need_cmd ansible
     fi
 }
