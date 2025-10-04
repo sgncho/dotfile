@@ -59,6 +59,14 @@
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "BurntSushi/ripgrep",
       "extractVersionTemplate": "^v?(?<version>.*)$"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["^init\\.yaml$"],
+      "matchStrings": ["fzf_version:\\s*\"(?<currentValue>.*?)\""],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "junegunn/fzf",
+      "extractVersionTemplate": "^v?(?<version>.*)$"
     }
   ]
 }

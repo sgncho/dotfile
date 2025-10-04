@@ -1,0 +1,9 @@
+---
+- block:
+    - name: Install fzf via tarball
+      unarchive:
+        src: "https://github.com/junegunn/fzf/releases/download/v{{ fzf_version }}/fzf-{{ fzf_version }}-linux_amd64.tar.gz"
+        dest: "{{ binary_home }}"
+        remote_src: yes
+        extra_opts:
+          - --strip-components=1

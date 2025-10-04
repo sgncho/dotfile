@@ -9,4 +9,5 @@
       - nvim
       - gh
       - ripgrep
+      - fzf
     state: present
