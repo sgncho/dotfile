@@ -13,3 +13,6 @@
   import_tasks: ./gh.yaml
 - name: Install ripgrep
   import_tasks: ./ripgrep.yaml
+- name: Install fzf
+  import_tasks: ./fzf.yaml
+
