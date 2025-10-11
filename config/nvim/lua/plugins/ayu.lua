@@ -7,7 +7,12 @@ return {
         require('ayu').setup({
             mirage = false,
             terminal = true,
-            overrides = {},
+            overrides = {
+                Normal = { bg = '#FCFCFC' },
+                NormalNC = { bg = '#FCFCFC' },
+                NormalFloat = { bg = '#FCFCFC' },
+                SignColumn = { bg = '#FCFCFC' },
+            },
         })
 
         require('ayu').colorscheme()
