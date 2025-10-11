@@ -75,5 +75,15 @@
             "ctrl-a <": "vim::ResizePaneLeft",
             "ctrl-a >": "vim::ResizePaneRight"
         }
+    },
+    {
+      "bindings": {
+        "alt-.": "terminal_panel::ToggleFocus"
+      }
+    },
+    {
+      "bindings": {
+        "alt-,": "project_panel::ToggleFocus"
+      }
     }
 ]

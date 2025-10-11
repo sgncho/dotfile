@@ -1,6 +1,39 @@
 {
-  /* Autosave */
-  "ssh_connections": [],
+  "notification_panel": {
+    "button": false
+  },
+  "collaboration_panel": {
+    "button": false
+  },
+  "outline_panel": {
+    "button": false,
+    "folder_icons": true,
+    "file_icons": true
+  },
+  "status_bar": {
+    "cursor_position_button": true,
+    "active_language_button": true
+  },
+  "file_finder": {
+    "file_icons": true
+  },
+  "search": {
+    "button": false,
+    "regex": true
+  },
+  "title_bar": {
+    "show_menus": false,
+    "show_user_picture": true,
+    "show_branch_icon": false
+  },
+  "prettier": {
+    "allowed": true
+  },
+  "format_on_save": "off",
+  "preferred_line_length": 88,
+  "bottom_dock_layout": "full",
+  "show_whitespaces": "none",
+  "current_line_highlight": "all",
   "autosave": {
     "after_delay": {
       "milliseconds": 400
@@ -14,6 +47,7 @@
 
   /* Git panel */
   "git_panel": {
+    "button": false,
     "dock": "right"
   },
 
@@ -55,9 +89,10 @@
 
   /* Diagnostics */
   "diagnostics": {
+    "button": true,
     "inline": {
       "enabled": true,
-      "min_column": 110
+      "min_column": 88
     }
   },
 
@@ -95,6 +130,9 @@
     "JSONC": {
       "tab_size": 2
     },
+    "Svelte": {
+      "tab_size": 2
+    },
     "Markdown": {
       "show_edit_predictions": true,
       "soft_wrap": "bounded",
@@ -104,14 +142,10 @@
       "hard_tabs": true
     },
     "Python": {
-      "language_servers": ["ty", "ruff"],
+      "language_servers": ["basedpyright", "ruff"],
       "formatter": [
-        {
-          "code_actions": {
-            "source.fixAll.ruff": true,
-            "source.organizeImports.ruff": true
-          }
-        },
+        { "code_action": "source.fixAll.ruff" },
+        { "code_action": "source.organizeImports.ruff" },
         {
           "language_server": {
             "name": "ruff"
@@ -181,13 +215,16 @@
 
   /* Terminal */
   "terminal": {
+    "dock": "right",
+    "button": true,
     "detect_venv": {
       "on": {
         "directories": [".venv"],
         "activate_script": "default"
       }
     },
-    "default_width": 720
+    "default_width": 560,
+    "minimum_contrast": 0
   },
 
   /* Theme */
@@ -203,11 +240,14 @@
 
   /* Project Panel */
   "project_panel": {
+    "default_width": 280,
+    "button": true,
     "dock": "left"
   },
 
   /* Assistant Panel */
   "agent": {
+    "default_width": 560,
     "default_model": {
       "provider": "copilot_chat",
       "model": "gpt-4.1"
@@ -235,6 +275,6 @@
   "ui_font_size": 16,
 
   /* Misc. */
-  "auto_signature_help": true,
+  "auto_signature_help": false,
   "use_system_window_tabs": true
 }
