@@ -7,7 +7,7 @@
     config_home: "{{ ansible_env.XDG_CONFIG_HOME | default(ansible_env.HOME ~ '/.config') }}"
     age_version: "1.2.1"
     bat_version: "0.25.0"
-    delta_version: "0.14.0"
+    delta_version: "0.18.2"
     eza_version: "0.23.4"
     nvim_version: "0.11.4"
     gh_version: "2.81.0"
