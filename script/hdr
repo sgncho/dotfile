@@ -1,0 +1,55 @@
+#!/bin/bash
+
+get_display_id() {
+  displayplacer list | awk '/64837A54.*/{getline; if(/Contextual/) printf $4}'
+}
+
+usage() {
+  echo "Usage: hdr [on|off]"
+  echo "  on  - HDR ON (mode:183)"
+  echo "  off - HDR OFF (mode:180)"
+  exit 1
+}
+
+err() {
+  local red
+  local reset
+  red=$(tput setaf 1 2>/dev/null || echo '')
+  reset=$(tput sgr0 2>/dev/null || echo '')
+  echo "${red}error${reset}: $1" >&2
+  exit 1
+}
+
+if [ $# -eq 0 ]; then
+  usage
+fi
+
+case "$1" in
+-h | --help)
+  usage
+  ;;
+on)
+  DISPLAY_ID=$(get_display_id)
+  displayplacer "id:$DISPLAY_ID mode:183"
+  if [ $? -eq 0 ]; then
+    echo "✓ HDR activated."
+  else
+    err "✗ HDR activation failed."
+  fi
+  exit 0
+  ;;
+off)
+  DISPLAY_ID=$(get_display_id)
+  displayplacer "id:$DISPLAY_ID mode:180"
+  if [ $? -eq 0 ]; then
+    echo "✓ HDR deactivated."
+  else
+    err "✗ HDR deactivation failed."
+  fi
+  exit 0
+  ;;
+*)
+  echo "wrong parameters."
+  usage
+  ;;
+esac
