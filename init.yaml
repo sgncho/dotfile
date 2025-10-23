@@ -1,18 +1,12 @@
 - hosts: localhost
   connection: local
+  vars_files:
+    - version.yaml
   vars:
     dotfile_home: "{{ ansible_env.HOME }}/dotfile"
     binary_home: "{{ ansible_env.LOCAL_BINARY_HOME | default(ansible_env.HOME ~ '/.local/bin') }}"
     data_home: "{{ ansible_env.XDG_DATA_HOME | default(ansible_env.HOME ~ '/.local/share') }}"
     config_home: "{{ ansible_env.XDG_CONFIG_HOME | default(ansible_env.HOME ~ '/.config') }}"
-    age_version: "1.2.1"
-    bat_version: "0.25.0"
-    delta_version: "0.18.2"
-    eza_version: "0.23.4"
-    nvim_version: "0.11.4"
-    gh_version: "2.82.0"
-    ripgrep_version: "14.1.1"
-    fzf_version: "0.65.2"
   tasks:
     - import_tasks: task/install/linux/base.yaml
       tags: install

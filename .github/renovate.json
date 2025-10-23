@@ -6,7 +6,7 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["^init\\.yaml$"],
+      "fileMatch": ["^versions\\.yaml$"],
       "matchStrings": ["age_version:\\s*\"(?<currentValue>.*?)\""],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "FiloSottile/age",
@@ -14,7 +14,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["^init\\.yaml$"],
+      "fileMatch": ["^versions\\.yaml$"],
       "matchStrings": ["bat_version:\\s*\"(?<currentValue>.*?)\""],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "sharkdp/bat",
@@ -22,7 +22,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["^init\\.yaml$"],
+      "fileMatch": ["^versions\\.yaml$"],
       "matchStrings": ["delta_version:\\s*\"(?<currentValue>.*?)\""],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "dandavison/delta",
@@ -30,7 +30,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["^init\\.yaml$"],
+      "fileMatch": ["^versions\\.yaml$"],
       "matchStrings": ["eza_version:\\s*\"(?<currentValue>.*?)\""],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "eza-community/eza",
@@ -38,7 +38,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["^init\\.yaml$"],
+      "fileMatch": ["^versions\\.yaml$"],
       "matchStrings": ["nvim_version:\\s*\"(?<currentValue>.*?)\""],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "neovim/neovim",
@@ -46,7 +46,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["^init\\.yaml$"],
+      "fileMatch": ["^versions\\.yaml$"],
       "matchStrings": ["gh_version:\\s*\"(?<currentValue>.*?)\""],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "cli/cli",
@@ -54,7 +54,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["^init\\.yaml$"],
+      "fileMatch": ["^versions\\.yaml$"],
       "matchStrings": ["ripgrep_version:\\s*\"(?<currentValue>.*?)\""],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "BurntSushi/ripgrep",
@@ -62,7 +62,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["^init\\.yaml$"],
+      "fileMatch": ["^versions\\.yaml$"],
       "matchStrings": ["fzf_version:\\s*\"(?<currentValue>.*?)\""],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "junegunn/fzf",
