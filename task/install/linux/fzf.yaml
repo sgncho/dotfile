@@ -1,21 +1,21 @@
 ---
 - block:
-    - name: Check if fzf is installed
-      command: which fzf
-      register: fzf_installed
-      changed_when: false
-      failed_when: false
-    - name: Get installed fzf version
-      shell: fzf --version | awk 'match($0, /[0-9]+\.[0-9]+\.[0-9]+/) { printf substr($0, RSTART, RLENGTH); exit }'
-      register: fzf_current_version
-      changed_when: false
-      when: fzf_installed.rc == 0
-    - name: Set fzf installation flag
-      set_fact:
-        fzf_install: "{{ fzf_installed.rc != 0 or fzf_current_version.stdout is version(fzf_version, '<') }}"
-    - name: Install fzf via tarball
-      unarchive:
-        src: "https://github.com/junegunn/fzf/releases/download/v{{ fzf_version }}/fzf-{{ fzf_version }}-linux_amd64.tar.gz"
-        dest: "{{ binary_home }}"
-        remote_src: yes
-      when: fzf_install
+  - name: Check if fzf is installed
+    command: which fzf
+    register: fzf_installed
+    changed_when: false
+    failed_when: false
+  - name: Get installed fzf version
+    shell: fzf --version | awk 'match($0, /[0-9]+\.[0-9]+\.[0-9]+/) { printf substr($0, RSTART, RLENGTH); exit }'
+    register: fzf_current_version
+    changed_when: false
+    when: fzf_installed.rc == 0
+  - name: Set fzf installation flag
+    set_fact:
+      fzf_install: "{{ fzf_installed.rc != 0 or fzf_current_version.stdout is version(fzf_version, '<') }}"
+  - name: Install fzf via tarball
+    unarchive:
+      src: "https://github.com/junegunn/fzf/releases/download/v{{ fzf_version }}/fzf-{{ fzf_version }}-linux_amd64.tar.gz"
+      dest: "{{ binary_home }}"
+      remote_src: yes
+    when: fzf_install

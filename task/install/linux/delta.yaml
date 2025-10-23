@@ -1,40 +1,40 @@
 ---
 - block:
-    - name: Check if delta is installed
-      command: which delta
-      register: delta_installed
-      changed_when: false
-      failed_when: false
-    - name: Get installed delta version
-      shell: delta --version | awk 'match($0, /[0-9]+\.[0-9]+\.[0-9]+/) { printf substr($0, RSTART, RLENGTH); exit }'
-      register: delta_current_version
-      changed_when: false
-      when: delta_installed.rc == 0
-    - name: Set delta installation flag
-      set_fact:
-        delta_install:  "{{ delta_installed.rc != 0 or delta_current_version.stdout is version(delta_version, '<') }}"
-    - name: Remove previous delta data
-      file:
-        path: "{{ data_home }}/delta"
-        state: absent
-      when: delta_install
-    - name: Create delta directory
-      file:
-        path: "{{ data_home }}/delta"
-        state: directory
-      when: delta_install
-    - name: Install delta via tarball
-      unarchive:
-        src: "https://github.com/dandavison/delta/releases/download/{{ delta_version }}/delta-{{ delta_version }}-x86_64-unknown-linux-gnu.tar.gz"
-        dest: "{{ data_home }}/delta"
-        remote_src: yes
-        extra_opts:
-          - --strip-components=1
-      when: delta_install
-    - name: Create symlink for delta
-      file:
-        src: "{{ data_home }}/delta/delta"
-        dest: "{{ binary_home }}/delta"
-        state: link
-        force: yes
-      when: delta_install
+  - name: Check if delta is installed
+    command: which delta
+    register: delta_installed
+    changed_when: false
+    failed_when: false
+  - name: Get installed delta version
+    shell: delta --version | awk 'match($0, /[0-9]+\.[0-9]+\.[0-9]+/) { printf substr($0, RSTART, RLENGTH); exit }'
+    register: delta_current_version
+    changed_when: false
+    when: delta_installed.rc == 0
+  - name: Set delta installation flag
+    set_fact:
+      delta_install:  "{{ delta_installed.rc != 0 or delta_current_version.stdout is version(delta_version, '<') }}"
+  - name: Remove previous delta data
+    file:
+      path: "{{ data_home }}/delta"
+      state: absent
+    when: delta_install
+  - name: Create delta directory
+    file:
+      path: "{{ data_home }}/delta"
+      state: directory
+    when: delta_install
+  - name: Install delta via tarball
+    unarchive:
+      src: "https://github.com/dandavison/delta/releases/download/{{ delta_version }}/delta-{{ delta_version }}-x86_64-unknown-linux-gnu.tar.gz"
+      dest: "{{ data_home }}/delta"
+      remote_src: yes
+      extra_opts:
+        - --strip-components=1
+    when: delta_install
+  - name: Create symlink for delta
+    file:
+      src: "{{ data_home }}/delta/delta"
+      dest: "{{ binary_home }}/delta"
+      state: link
+      force: yes
+    when: delta_install

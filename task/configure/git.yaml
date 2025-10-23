@@ -1,24 +1,24 @@
 ---
 - block:
-    - name: Get git version
-      command: git version
-      register: git_version_output
-      changed_when: false
-    - name: Parse git version
-      set_fact:
-        git_version: "{{ git_version_output.stdout | regex_search('([0-9]+\\.[0-9]+\\.[0-9]+)') }}"
-    - name: Create git config directory
-      file:
-        path: "{{ config_home }}/git"
-        state: directory
-    - name: Deploy Git config from template
-      template:
-        src: "{{ dotfile_home }}/config/git/.gitconfig.j2"
-        dest: "{{ config_home }}/git/config"
-        mode: "0644"
-    - name: Create symlink for gitignore
-      file:
-        src: "{{ dotfile_home }}/config/git/.gitignore"
-        dest: "{{ config_home }}/git/ignore"
-        state: link
-        force: yes
+  - name: Get git version
+    command: git version
+    register: git_version_output
+    changed_when: false
+  - name: Parse git version
+    set_fact:
+      git_version: "{{ git_version_output.stdout | regex_search('([0-9]+\\.[0-9]+\\.[0-9]+)') }}"
+  - name: Create git config directory
+    file:
+      path: "{{ config_home }}/git"
+      state: directory
+  - name: Deploy Git config from template
+    template:
+      src: "{{ dotfile_home }}/config/git/.gitconfig.j2"
+      dest: "{{ config_home }}/git/config"
+      mode: "0644"
+  - name: Create symlink for gitignore
+    file:
+      src: "{{ dotfile_home }}/config/git/.gitignore"
+      dest: "{{ config_home }}/git/ignore"
+      state: link
+      force: yes

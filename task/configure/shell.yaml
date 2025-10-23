@@ -1,32 +1,32 @@
 ---
 - block:
-    - name: Create symlink for ~/.rc.d
-      file:
-        src: "{{ dotfile_home }}/config/.rc.d"
-        dest: "{{ ansible_env.HOME }}/.rc.d"
-        state: link
-        force: yes
-    - name: Create symlink profile for bash
-      file:
-        src: "{{ dotfile_home }}/config/.profile"
-        dest: "{{ ansible_env.HOME }}/.bash_profile"
-        state: link
-        force: yes
-    - name: Create symlink profile for zsh
-      file:
-        src: "{{ dotfile_home }}/config/.profile"
-        dest: "{{ ansible_env.HOME }}/.zprofile"
-        state: link
-        force: yes
-    - name: Create symlink rc for bash
-      file:
-        src: "{{ dotfile_home }}/config/.rc"
-        dest: "{{ ansible_env.HOME }}/.bashrc"
-        state: link
-        force: yes
-    - name: Create symlink rc for zsh
-      file:
-        src: "{{ dotfile_home }}/config/.rc"
-        dest: "{{ ansible_env.HOME }}/.zshrc"
-        state: link
-        force: yes
+  - name: Create symlink for ~/.rc.d
+    file:
+      src: "{{ dotfile_home }}/config/.rc.d"
+      dest: "{{ ansible_env.HOME }}/.rc.d"
+      state: link
+      force: yes
+  - name: Create symlink profile for bash
+    file:
+      src: "{{ dotfile_home }}/config/.profile"
+      dest: "{{ ansible_env.HOME }}/.bash_profile"
+      state: link
+      force: yes
+  - name: Create symlink profile for zsh
+    file:
+      src: "{{ dotfile_home }}/config/.profile"
+      dest: "{{ ansible_env.HOME }}/.zprofile"
+      state: link
+      force: yes
+  - name: Create symlink rc for bash
+    file:
+      src: "{{ dotfile_home }}/config/.rc"
+      dest: "{{ ansible_env.HOME }}/.bashrc"
+      state: link
+      force: yes
+  - name: Create symlink rc for zsh
+    file:
+      src: "{{ dotfile_home }}/config/.rc"
+      dest: "{{ ansible_env.HOME }}/.zshrc"
+      state: link
+      force: yes
