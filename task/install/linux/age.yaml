@@ -1,13 +1,28 @@
 ---
 - block:
+    - name: Check if age is installed
+      command: which age
+      register: age_installed
+      changed_when: false
+      failed_when: false
+    - name: Get installed age version
+      shell: age --version | awk 'match($0, /[0-9]+\.[0-9]+\.[0-9]+/) { printf substr($0, RSTART, RLENGTH); exit }'
+      register: age_current_version
+      changed_when: false
+      when: age_installed.rc == 0
+    - name: Set age installation flag
+      set_fact:
+        age_install: "{{ age_installed.rc != 0 or age_current_version.stdout is version(age_version, '<') }}"
     - name: Remove previous age data
       file:
         path: "{{ data_home }}/age"
         state: absent
+      when: age_install
     - name: Create age directory
       file:
         path: "{{ data_home }}/age"
         state: directory
+      when: age_install
     - name: Install age via tarball
       unarchive:
         src: "https://github.com/FiloSottile/age/releases/download/v{{ age_version }}/age-v{{ age_version }}-linux-amd64.tar.gz"
@@ -15,15 +30,18 @@
         remote_src: yes
         extra_opts:
           - --strip-components=1
+      when: age_install
     - name: Create symlink for age
       file:
         src: "{{ data_home }}/age/age"
         dest: "{{ binary_home }}/age"
         state: link
         force: yes
+      when: age_install
     - name: Create symlink for age-keygen
       file:
         src: "{{ data_home }}/age/age-keygen"
         dest: "{{ binary_home }}/age-keygen"
         state: link
         force: yes
+      when: age_install

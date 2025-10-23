@@ -1,13 +1,28 @@
 ---
 - block:
+    - name: Check if bat is installed
+      command: which bat
+      register: bat_installed
+      changed_when: false
+      failed_when: false
+    - name: Get installed bat version
+      shell: bat --version | awk 'match($0, /[0-9]+\.[0-9]+\.[0-9]+/) { printf substr($0, RSTART, RLENGTH); exit }'
+      register: bat_current_version
+      changed_when: false
+      when: bat_installed.rc == 0
+    - name: Set bat installation flag
+      set_fact:
+        bat_install: "{{ bat_installed.rc != 0 or bat_current_version.stdout is version(bat_version, '<') }}"
     - name: Remove previous bat data
       file:
         path: "{{ data_home }}/bat"
         state: absent
+      when: bat_install
     - name: Create bat data directory
       file:
         path: "{{ data_home }}/bat"
         state: directory
+      when: bat_install
     - name: Download and extract bat
       unarchive:
         src: "https://github.com/sharkdp/bat/releases/download/v{{ bat_version }}/bat-v{{ bat_version }}-x86_64-unknown-linux-gnu.tar.gz"
@@ -15,9 +30,11 @@
         remote_src: yes
         extra_opts:
           - --strip-components=1
+      when: bat_install
     - name: Create symlink for bat binary
       file:
         src: "{{ data_home }}/bat/bat"
         dest: "{{ binary_home }}/bat"
         state: link
         force: yes
+      when: bat_install

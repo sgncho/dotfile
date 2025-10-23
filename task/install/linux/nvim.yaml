@@ -1,13 +1,28 @@
 ---
 - block:
+  - name: Check if nvim is installed
+    command: which nvim
+    register: nvim_installed
+    changed_when: false
+    failed_when: false
+  - name: Get installed nvim version
+    shell: nvim --version | awk 'match($0, /[0-9]+\.[0-9]+\.[0-9]+/) { printf substr($0, RSTART, RLENGTH); exit }'
+    register: nvim_current_version
+    changed_when: false
+    when: nvim_installed.rc == 0
+  - name: Set nvim installation flag
+    set_fact:
+      nvim_install: "{{ nvim_installed.rc != 0 or nvim_current_version.stdout is version(nvim_version, '<') }}"
   - name: Remove previous neovim data
     file:
       path: "{{ data_home }}/nvim"
       state: absent
+    when: nvim_install
   - name: Create nvim directory
     file:
       path: "{{ data_home }}/nvim"
       state: directory
+    when: nvim_install
   - name: Install nvim via tarball
     unarchive:
       src: "https://github.com/neovim/neovim/releases/download/v{{ nvim_version }}/nvim-linux-x86_64.tar.gz"
@@ -21,3 +36,4 @@
       dest: "{{ binary_home }}/nvim"
       state: link
       force: yes
+    when: nvim_install

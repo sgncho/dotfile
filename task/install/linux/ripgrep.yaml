@@ -1,13 +1,28 @@
 ---
 - block:
+    - name: Check if rg is installed
+      command: which rg
+      register: rg_installed
+      changed_when: false
+      failed_when: false
+    - name: Get installed rg version
+      shell: rg --version | awk 'match($0, /[0-9]+\.[0-9]+\.[0-9]+/) { printf substr($0, RSTART, RLENGTH); exit }'
+      register: rg_current_version
+      changed_when: false
+      when: rg_installed.rc == 0
+    - name: Set rg installation flag
+      set_fact:
+        rg_install: "{{ rg_installed.rc != 0 or rg_current_version.stdout is version(rg_version, '<') }}"
     - name: Remove previous ripgrep data
       file:
         path: "{{ data_home }}/ripgrep"
         state: absent
+      when: rg_install
     - name: Create ripgrep directory
       file:
         path: "{{ data_home }}/ripgrep"
         state: directory
+      when: rg_install
     - name: Install ripgrep via tarball
       unarchive:
         src: "https://github.com/BurntSushi/ripgrep/releases/download/{{ ripgrep_version }}/ripgrep-{{ ripgrep_version }}-x86_64-unknown-linux-musl.tar.gz"
@@ -15,9 +30,11 @@
         remote_src: yes
         extra_opts:
           - --strip-components=1
+      when: rg_install
     - name: Create symlink for ripgrep
       file:
         src: "{{ data_home }}/ripgrep/rg"
         dest: "{{ binary_home }}/rg"
         state: link
         force: yes
+      when: rg_install
