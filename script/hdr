@@ -30,6 +30,10 @@ case "$1" in
   ;;
 on)
   DISPLAY_ID=$(get_display_id)
+  if [ -z "$DISPLAY_ID" ]; then
+    err "No display found."
+  fi
+
   displayplacer "id:$DISPLAY_ID mode:183"
   if [ $? -eq 0 ]; then
     echo "✓ HDR activated."
@@ -40,6 +44,10 @@ on)
   ;;
 off)
   DISPLAY_ID=$(get_display_id)
+  if [ -z "$DISPLAY_ID" ]; then
+    err "No display found."
+  fi
+
   displayplacer "id:$DISPLAY_ID mode:180"
   if [ $? -eq 0 ]; then
     echo "✓ HDR deactivated."
