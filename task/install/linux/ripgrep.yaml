@@ -12,7 +12,7 @@
     when: rg_installed.rc == 0
   - name: Set rg installation flag
     set_fact:
-      rg_install: "{{ rg_installed.rc != 0 or rg_current_version.stdout is version(rg_version, '<') }}"
+      rg_install: "{{ rg_installed.rc != 0 or rg_current_version.stdout is version(ripgrep_version, '<') }}"
   - name: Remove previous ripgrep data
     file:
       path: "{{ data_home }}/ripgrep"

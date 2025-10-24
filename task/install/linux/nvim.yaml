@@ -30,6 +30,7 @@
       remote_src: yes
       extra_opts:
         - --strip-components=1
+    when: nvim_install
   - name: Create symlink for nvim
     file:
       src: "{{ data_home }}/nvim/bin/nvim"

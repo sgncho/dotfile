@@ -24,4 +24,4 @@ fi
 DOTFILE_DIR="$HOME/dotfile"
 
 cd "$DOTFILE_DIR"
-ansible-playbook init.yml
+ansible-playbook init.yaml
