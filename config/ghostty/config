@@ -30,8 +30,8 @@ keybind=global:ctrl+shift+t=new_window
 keybind=shift+enter=text:\n
 
 # Ctrl+A then hjkl to move split focus (sequence keybinds)
-keybind=ctrl+a>h=goto_split:left
-keybind=ctrl+a>j=goto_split:down
-keybind=ctrl+a>k=goto_split:up
-keybind=ctrl+a>l=goto_split:right
-keybind=ctrl+a>ctrl+a=text:\x01
+keybind=ctrl+w>h=goto_split:left
+keybind=ctrl+w>j=goto_split:down
+keybind=ctrl+w>k=goto_split:up
+keybind=ctrl+w>l=goto_split:right
+keybind=ctrl+w>ctrl+w=text:\x01
