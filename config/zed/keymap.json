@@ -63,7 +63,7 @@
   {
     "context": "vim_mode == literal",
     "bindings": {
-      "tab": ["vim::Literal", ["tab", "\u0009"]]
+      "tab": ["vim::Literal", ["tab", "\t"]]
     }
   },
   {
@@ -84,6 +84,12 @@
   {
     "bindings": {
       "alt-,": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "shift-enter": ["terminal::SendText", "\u001b\r"]
     }
   }
 ]

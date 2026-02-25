@@ -41,9 +41,6 @@
   },
 
   "show_edit_predictions": true,
-  "features": {
-    "edit_prediction_provider": "zed"
-  },
 
   /* Git panel */
   "git_panel": {
@@ -52,7 +49,7 @@
   },
 
   /* Restore on Startup */
-  "restore_on_startup": "none",
+  "restore_on_startup": "empty_tab",
 
   /* Buffer */
   "buffer_font_family": "JetBrains Mono",
@@ -61,6 +58,7 @@
 
   /* Edit Predictions */
   "edit_predictions": {
+    "provider": "zed",
     "mode": "subtle",
     "enabled_in_text_threads": false
   },
@@ -92,7 +90,7 @@
     "button": true,
     "inline": {
       "enabled": true,
-      "min_column": 88
+      "min_column": 100
     }
   },
 
@@ -134,7 +132,7 @@
       "tab_size": 2
     },
     "Markdown": {
-      "show_edit_predictions": true,
+      "show_edit_predictions": false,
       "soft_wrap": "bounded",
       "tab_size": 2
     },
@@ -142,6 +140,15 @@
       "hard_tabs": true
     },
     "Python": {
+      "language_servers": [
+        "ty",
+        "ruff",
+        "!basedpyright",
+        "!pyrefly",
+        "!pyright",
+        "!pylsp",
+        "..."
+      ],
       "formatter": [
         { "code_action": "source.fixAll.ruff" },
         { "code_action": "source.organizeImports.ruff" },
@@ -158,17 +165,6 @@
   },
 
   "lsp": {
-    "pyright": {
-      "settings": {
-        "python.analysis": {
-          "diagnosticMode": "workspace",
-          "typeCheckingMode": "standard"
-        },
-        "python": {
-          "pythonPath": ".venv/bin/python"
-        }
-      }
-    },
     "ruff": {
       "initialization_options": {
         "settings": {
@@ -199,7 +195,7 @@
   },
 
   /* Wrap Guides (Verical Rulers) */
-  "wrap_guides": [88, 120],
+  "wrap_guides": [100],
 
   /* Telemetry */
   "telemetry": {
@@ -241,6 +237,8 @@
 
   /* Assistant Panel */
   "agent": {
+    "enable_feedback": false,
+    "use_modifier_to_send": true,
     "default_width": 560,
     "default_model": {
       "provider": "copilot_chat",
@@ -248,13 +246,12 @@
     },
     "inline_assistant_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4.5"
+      "model": "gemini-3-flash-preview"
     },
     "commit_message_model": {
       "provider": "copilot_chat",
       "model": "gpt-5.2"
     },
-    "always_allow_tool_actions": false,
     "default_profile": "minimal",
     "model_parameters": [
       {
@@ -269,6 +266,7 @@
   "ui_font_size": 16,
 
   /* Misc. */
-  "auto_signature_help": false,
-  "use_system_window_tabs": true
+  "auto_signature_help": true,
+  "use_system_window_tabs": true,
+  "show_signature_help_after_edits": true
 }
