@@ -1,21 +1,37 @@
+# ===== Theme / Colors =====
 theme=Ayu Light
 background=#fcfcfc
+cursor-color=#646464
 cursor-style=block
+
+# ===== Fonts =====
 font-family="Jetbrains Mono"
 font-family="LINE Seed Sans KR"
+font-size=13
+
+# ===== Window size / Padding =====
 window-height=24
 window-width=80
 window-padding-x=8
-window-padding-y=0, 4
+window-padding-y=0,4
 window-colorspace="display-p3"
 window-save-state="never"
+
+# ===== Behavior / UI =====
 shell-integration-features=no-cursor
-cursor-color=#646464
+unfocused-split-opacity=0.7
+term=xterm-256color
 title=" "
 macos-titlebar-proxy-icon="hidden"
 macos-icon="paper"
-font-size=13
-unfocused-split-opacity=0.7
-term=xterm-256color
+
+# ===== Keybinds =====
 keybind=global:ctrl+shift+t=new_window
-keybind = shift+enter=text:\n
+keybind=shift+enter=text:\n
+
+# Ctrl+A then hjkl to move split focus (sequence keybinds)
+keybind=ctrl+a>h=goto_split:left
+keybind=ctrl+a>j=goto_split:down
+keybind=ctrl+a>k=goto_split:up
+keybind=ctrl+a>l=goto_split:right
+keybind=ctrl+a>ctrl+a=text:\x01
