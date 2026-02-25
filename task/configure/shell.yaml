@@ -31,14 +31,15 @@
         dest: "{{ ansible_facts.env.HOME }}/.zshrc"
         state: link
         force: true
-    - name: Ensure ~/.local/bin exists
+    - name: Ensure local binary home exists
       ansible.builtin.file:
-        path: "{{ ansible_facts.env.HOME }}/.local/bin"
+        path: "{{ ansible_facts.env.LOCAL_BINARY_HOME }}"
         state: directory
         mode: "0755"
-    - name: Create symlink for forktree
+    - name: Create symlink for pbcopy on Linux
       ansible.builtin.file:
-        src: "{{ dotfile_home }}/script/forktree"
-        dest: "{{ ansible_facts.env.HOME }}/.local/bin/forktree"
+        src: "{{ dotfile_home }}/script/pbcopy"
+        dest: "{{ ansible_facts.env.LOCAL_BINARY_HOME }}/pbcopy"
         state: link
         force: true
+      when: ansible_facts['system'] == 'Linux'

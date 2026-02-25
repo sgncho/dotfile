@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+tty_out="/dev/tty"
+if [[ ! -w "/dev/tty" ]]; then
+  tty_out="/dev/stdout"
+fi
+
+seq=$'\e]52;c;'$(base64 | tr -d '\r\n')$'\a'
+if [[ -n "${TMUX-}" ]]; then
+  printf $'\033Ptmux;\033%b\033\\' "$seq" > "$tty_out"
+else
+  printf '%b' "$seq" > "$tty_out"
+fi
