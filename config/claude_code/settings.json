@@ -1,17 +1,7 @@
 {
-  "sandbox": {
-    "enabled": true,
-    "autoAllowBashIfSandboxed": true,
-    "excludedCommands": ["git", "docker", "npm", "bun", "cargo", "go"],
-    "network": {
-      "allowUnixSockets": ["/var/run/docker.sock"],
-      "allowLocalBinding": true
-    }
-  },
   "permissions": {
     "allow": [
       "Edit(*)",
-
       "Bash(git status)",
       "Bash(git diff:*)",
       "Bash(git log:*)",
@@ -23,50 +13,28 @@
       "Bash(git pull:*)",
       "Bash(git fetch:*)",
       "Bash(git stash:*)",
-
       "Bash(cargo check:*)",
       "Bash(cargo build:*)",
       "Bash(cargo test:*)",
       "Bash(cargo run:*)",
       "Bash(cargo fmt:*)",
       "Bash(cargo clippy:*)",
-
       "Bash(npm install:*)",
       "Bash(npm run:*)",
       "Bash(npm test:*)",
-
       "Bash(go build:*)",
       "Bash(go run:*)",
       "Bash(go test:*)",
       "Bash(go fmt:*)",
       "Bash(go mod:*)",
-
       "Bash(bun install:*)",
       "Bash(bun run:*)",
       "Bash(bun test:*)",
-
       "Bash(ls:*)",
       "Bash(cat:*)",
       "Bash(rg:*)",
       "Bash(fd:*)",
       "Bash(echo:*)"
-    ],
-    "ask": [
-      "Bash(git push:*)",
-      "Bash(git merge:*)",
-      "Bash(git rebase:*)",
-      "Bash(git reset:*)",
-
-      "Bash(cargo publish:*)",
-
-      "Bash(npm publish:*)",
-
-      "Bash(docker run:*)",
-      "Bash(docker-compose up:*)",
-
-      "Bash(rm:*)",
-      "Bash(mv:*)",
-      "WebFetch"
     ],
     "deny": [
       "Bash(sudo:*)",
@@ -75,6 +43,32 @@
       "Read(**/.env)",
       "Read(**/.env.*)",
       "Read(~/.ssh/)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(git merge:*)",
+      "Bash(git rebase:*)",
+      "Bash(git reset:*)",
+      "Bash(cargo publish:*)",
+      "Bash(npm publish:*)",
+      "Bash(docker run:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(rm:*)",
+      "Bash(mv:*)",
+      "WebFetch"
     ]
+  },
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
+  "language": "Korean",
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "network": {
+      "allowUnixSockets": ["/var/run/docker.sock"],
+      "allowLocalBinding": true
+    },
+    "excludedCommands": ["git", "docker", "npm", "bun", "cargo", "go"]
   }
 }

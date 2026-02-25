@@ -1,0 +1,15 @@
+web_search = "cached"
+
+model = "gpt-5.3-codex"
+model_reasoning_effort = "high"
+
+personality = "friendly"
+
+[features]
+shell_snapshot = true
+unified_exec = true
+steer = true
+multi_agent = true
+
+[notice.model_migrations]
+"gpt-5.2" = "gpt-5.2-codex"
