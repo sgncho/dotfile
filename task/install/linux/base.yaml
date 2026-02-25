@@ -15,8 +15,6 @@
   ansible.builtin.import_tasks: ./ripgrep.yaml
 - name: Install fzf
   ansible.builtin.import_tasks: ./fzf.yaml
-- name: Install nvm and node
-  ansible.builtin.import_tasks: ./nvm.yaml
 - name: Install Rust toolchain
   ansible.builtin.import_tasks: ./rust.yaml
 - name: Install Bun

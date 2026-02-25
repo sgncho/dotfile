@@ -20,5 +20,3 @@
   environment:
     RUSTUP_HOME: "{{ data_home }}/rustup"
     CARGO_HOME: "{{ data_home }}/cargo"
-- name: Install nvm and node
-  ansible.builtin.import_tasks: ./nvm.yaml
