@@ -33,13 +33,13 @@
         force: true
     - name: Ensure local binary home exists
       ansible.builtin.file:
-        path: "{{ ansible_facts.env.LOCAL_BINARY_HOME }}"
+        path: "{{ binary_home }}"
         state: directory
         mode: "0755"
     - name: Create symlink for pbcopy on Linux
       ansible.builtin.file:
         src: "{{ dotfile_home }}/script/pbcopy"
-        dest: "{{ ansible_facts.env.LOCAL_BINARY_HOME }}/pbcopy"
+        dest: "{{ binary_home }}/pbcopy"
         state: link
         force: true
       when: ansible_facts['system'] == 'Linux'
