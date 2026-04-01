@@ -15,6 +15,7 @@ return {
             },
         })
 
+        vim.o.background = "light"
         require('ayu').colorscheme()
     end,
 }
