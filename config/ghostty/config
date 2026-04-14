@@ -28,6 +28,10 @@ macos-icon="paper"
 # ===== Keybinds =====
 keybind=global:ctrl+shift+t=new_window
 keybind=shift+enter=text:\n
+keybind=ctrl+option+down=new_split:down
+keybind=ctrl+option+up=new_split:up
+keybind=ctrl+option+left=new_split:left
+keybind=ctrl+option+right=new_split:right
 
 # Ctrl+A then hjkl to move split focus (sequence keybinds)
 keybind=ctrl+w>h=goto_split:left
