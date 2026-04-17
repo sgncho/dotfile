@@ -13,3 +13,8 @@ function zle-keymap-select {
 }
 
 zle -N zle-keymap-select
+
+autoload -Uz edit-command-line
+zle -N edit-command-line
+
+bindkey -M vicmd v edit-command-line
