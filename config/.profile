@@ -80,3 +80,12 @@ export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 
 # codex
 export CODEX_HOME="$XDG_CONFIG_HOME/codex"
+
+# obsidian
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
+
+# go
+export PATH="$PATH:$XDG_DATA_HOME/go/bin"
+
+# SSH Secure Enclave
+export SSH_SK_PROVIDER=/usr/lib/ssh-keychain.dylib
