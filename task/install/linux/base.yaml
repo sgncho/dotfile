@@ -17,5 +17,3 @@
   ansible.builtin.import_tasks: ./fzf.yaml
 - name: Install Rust toolchain
   ansible.builtin.import_tasks: ./rust.yaml
-- name: Install Bun
-  ansible.builtin.import_tasks: ./bun.yaml
