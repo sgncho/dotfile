@@ -1,11 +1,64 @@
 {
-  "notification_panel": {
-    "button": false
+  "auto_update": false,
+  "proxy": "",
+  "cli_default_open_behavior": "existing_window",
+  "diff_view_style": "split",
+  "ssh_connections": [
+    {
+      "host": "mango4",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/scho/dev/ee793"]
+        },
+        {
+          "paths": ["/home/scho/dev/ee793-team-project"]
+        },
+        {
+          "paths": ["/home/scho/dev/seedling"]
+        },
+        {
+          "paths": ["/home/scho/dev/sglang"]
+        }
+      ]
+    },
+    {
+      "host": "nutella3",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/scho/dev/seedling"]
+        }
+      ]
+    },
+    {
+      "host": "mango1",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/scho/dev/ee793-team-project"]
+        },
+        {
+          "paths": ["/home/scho/dev/mercury"]
+        }
+      ]
+    }
+  ],
+  "agent_servers": {
+    "codex-acp": {
+      "default_config_options": {
+        "reasoning_effort": "medium"
+      },
+      "type": "registry"
+    }
   },
   "collaboration_panel": {
+    "dock": "right",
     "button": false
   },
   "outline_panel": {
+    "default_width": 300.0,
+    "dock": "right",
     "button": false,
     "folder_icons": true,
     "file_icons": true
@@ -23,15 +76,14 @@
   },
   "title_bar": {
     "show_menus": false,
-    "show_user_picture": true,
-    "show_branch_icon": false
+    "show_user_picture": true
   },
   "prettier": {
-    "allowed": true
+    "allowed": false
   },
   "format_on_save": "off",
   "preferred_line_length": 88,
-  "bottom_dock_layout": "full",
+  "bottom_dock_layout": "right_aligned",
   "show_whitespaces": "none",
   "current_line_highlight": "all",
   "autosave": {
@@ -40,7 +92,7 @@
     }
   },
 
-  "show_edit_predictions": true,
+  "show_edit_predictions": false,
 
   /* Git panel */
   "git_panel": {
@@ -59,8 +111,7 @@
   /* Edit Predictions */
   "edit_predictions": {
     "provider": "zed",
-    "mode": "subtle",
-    "enabled_in_text_threads": false
+    "mode": "subtle"
   },
 
   "cursor_blink": false,
@@ -82,7 +133,7 @@
 
   /* File Types */
   "file_types": {
-    "JSONC": ["*.json", "*.jsonl"]
+    "JSONC": ["*.json"]
   },
 
   /* Diagnostics */
@@ -165,30 +216,25 @@
   },
 
   "lsp": {
-    "ruff": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        }
+      },
+      "enable_lsp_tasks": true
+    },
+    "oxfmt": {
       "initialization_options": {
         "settings": {
-          "lint": {
-            "extendSelect": [
-              "E", // pycodestyle Error - PEP 8 style errors
-              "W", // pycodestyle Warning - PEP 8 style warnings
-              "F", // pyflakes - unused imports, variables, etc.
-              "S", // flake8 bandit - security vulnerability checks
-              "LOG", // flake8 logging - logging related issues
-              "G", // flake8 logging format - logging format checks
-              "Q", // flake8 quotes - quote style consistency
-              "A", // flake8 builtins - prevent shadowing builtin names
-              "B", // flake8 bugbear - detect common bug patterns
-              "C4", // flake8 comprehensions - comprehension optimization
-              "PLE", // pylint Error - pylint error rules
-              "PLW", // pylint Warning - pylint warning rules
-              "I", // isort - import sorting and grouping
-              "RUF" // ruff specific - ruff-specific rules
-            ]
-          },
-          "format": {
-            "quote-style": "double" // use double quotes for strings
-          }
+          "fmt.configPath": null
         }
       }
     }
@@ -205,7 +251,8 @@
 
   /* Terminal */
   "terminal": {
-    "dock": "right",
+    "flexible": false,
+    "dock": "left",
     "button": true,
     "detect_venv": {
       "on": {
@@ -213,7 +260,6 @@
         "activate_script": "default"
       }
     },
-    "default_width": 560,
     "minimum_contrast": 0
   },
 
@@ -232,32 +278,45 @@
   "project_panel": {
     "default_width": 280,
     "button": true,
-    "dock": "left"
+    "dock": "right"
   },
 
   /* Assistant Panel */
   "agent": {
+    "tool_permissions": {
+      "tools": {
+        "terminal": {
+          "always_allow": [
+            {
+              "pattern": "git --no-pager status"
+            },
+            {
+              "pattern": "git --no-pager diff"
+            }
+          ]
+        }
+      }
+    },
+    "flexible": false,
+    "default_width": 640,
+    "dock": "left",
     "enable_feedback": false,
     "use_modifier_to_send": true,
-    "default_width": 560,
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-5.2"
+      "effort": "high",
+      "enable_thinking": true,
+      "provider": "openai-subscribed",
+      "model": "gpt-5.5"
     },
     "inline_assistant_model": {
-      "provider": "copilot_chat",
-      "model": "gemini-3-flash-preview"
+      "provider": "openai-subscribed",
+      "model": "gpt-5.3-codex-spark"
     },
     "commit_message_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-5.2"
+      "provider": "openai-subscribed",
+      "model": "gpt-5.3-codex-spark"
     },
-    "default_profile": "minimal",
-    "model_parameters": [
-      {
-        "temperature": 0.3
-      }
-    ]
+    "default_profile": "write"
   },
 
   /* UI Font */
@@ -268,5 +327,16 @@
   /* Misc. */
   "auto_signature_help": true,
   "use_system_window_tabs": true,
-  "show_signature_help_after_edits": true
+  "show_signature_help_after_edits": true,
+  "experimental.theme_overrides": {
+    "players": [
+      {
+        "cursor": "#ffa800"
+      }
+    ]
+  },
+  "feature_flags": {
+    "tabular-data-preview": "on",
+    "notebooks": "on"
+  }
 }

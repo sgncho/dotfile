@@ -1,7 +1,14 @@
 [
   {
     "bindings": {
-      "alt-/": "agent::ToggleFocus",
+      "alt-/": "project_panel::ToggleFocus",
+      "alt-.": "terminal_panel::ToggleFocus",
+      "alt-,": "agent::ToggleFocus"
+    }
+  },
+  {
+    "context": "Dock",
+    "bindings": {
       "ctrl-w h": "workspace::ActivatePaneLeft",
       "ctrl-w j": "workspace::ActivatePaneDown",
       "ctrl-w k": "workspace::ActivatePaneUp",
@@ -9,81 +16,49 @@
     }
   },
   {
-    "context": "VimControl || Terminal || Dock || Editor",
+    "context": "Editor && mode == full && VimControl && !menu && vim_mode != operator",
     "bindings": {
-      "ctrl-j": "workspace::ToggleBottomDock",
-      "ctrl-h": "workspace::ToggleLeftDock",
-      "ctrl-l": "workspace::ToggleRightDock"
-    }
-  },
-  {
-    "context": "(vim_mode == normal || vim_mode == visual) && (vim_operator == none || vim_operator == n) && !VimWaiting",
-    "bindings": {
+      "space": null,
+      "space a": null,
+      "space f": null,
+      "space g": null,
+      "space p": null,
+
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+      "ctrl-6": "pane::AlternateFile",
+
       "space g p": "git_panel::ToggleFocus",
       "space g d": "git::Diff",
       "space g r": "git::Restore",
-      "space g R": "git::RestoreFile",
+      "space g shift-r": "git::RestoreFile",
       "space g s": "git::ToggleStaged",
       "space g b": "git::Branch",
       "space g n": "git::StageAndNext",
       "space g c": "git::ExpandCommitEditor",
+
       "space a c": "agent::ToggleFocus",
+      "space a i": "assistant::InlineAssist",
+
       "space p p": "pane::RevealInProjectPanel",
       "space p s": "project_symbols::Toggle",
       "space p f": "file_finder::Toggle",
-      "space a i": "assistant::InlineAssist",
+
       "space f f": "file_finder::Toggle",
       "space f s": "outline::Toggle"
     }
   },
   {
-    "context": "Editor && edit_prediction",
+    "context": "EmptyPane || SharedScreen",
     "bindings": {
-      "alt-tab": "editor::AcceptEditPrediction"
-    }
-  },
-  {
-    "context": "Editor",
-    "bindings": {
-      "tab": "editor::Tab"
-    }
-  },
-  {
-    "context": "Editor && showing_completions",
-    "bindings": {
-      "tab": "editor::ComposeCompletion"
-    }
-  },
-  {
-    "context": "(VimControl && !menu) || vim_mode == replace || vim_mode == waiting",
-    "bindings": {
-      "tab": "vim::Tab"
-    }
-  },
-  {
-    "context": "vim_mode == literal",
-    "bindings": {
-      "tab": ["vim::Literal", ["tab", "\t"]]
-    }
-  },
-  {
-    "context": "(VimControl || (!Editor && !Terminal))",
-    "bindings": {
-      "ctrl-w =": "vim::ResetPaneSizes",
-      "ctrl-w +": "vim::ResizePaneUp",
-      "ctrl-w -": "vim::ResizePaneDown",
-      "ctrl-w <": "vim::ResizePaneLeft",
-      "ctrl-w >": "vim::ResizePaneRight"
+      "space f f": "file_finder::Toggle"
     }
   },
   {
     "bindings": {
-      "alt-.": "terminal_panel::ToggleFocus"
-    }
-  },
-  {
-    "bindings": {
-      "alt-,": "project_panel::ToggleFocus"
+      "ctrl-j": "workspace::ToggleBottomDock",
+      "ctrl-h": "workspace::ToggleLeftDock",
+      "ctrl-l": "workspace::ToggleRightDock"
     }
   },
   {

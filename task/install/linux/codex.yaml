@@ -1,0 +1,44 @@
+---
+- name: Install codex
+  block:
+    - name: Check if codex is installed
+      ansible.builtin.command: which codex
+      register: codex_installed
+      changed_when: false
+      failed_when: false
+    - name: Get installed codex version
+      ansible.builtin.shell: |
+        set -o pipefail
+        codex --version | awk 'match($0, /[0-9]+\.[0-9]+\.[0-9]+/) { printf substr($0, RSTART, RLENGTH); exit }'
+      args:
+        executable: /bin/bash
+      register: codex_current_version
+      changed_when: false
+      when: codex_installed.rc == 0
+    - name: Set codex installation flag
+      ansible.builtin.set_fact:
+        codex_install: "{{ codex_installed.rc != 0 or codex_current_version.stdout is version(codex_version, '<') }}"
+    - name: Remove previous codex data
+      ansible.builtin.file:
+        path: "{{ data_home }}/codex"
+        state: absent
+      when: codex_install
+    - name: Create codex directory
+      ansible.builtin.file:
+        path: "{{ data_home }}/codex"
+        state: directory
+        mode: "0755"
+      when: codex_install
+    - name: Install codex via tarball
+      ansible.builtin.unarchive:
+        src: "https://github.com/openai/codex/releases/download/rust-v{{ codex_version }}/codex-x86_64-unknown-linux-musl.tar.gz"
+        dest: "{{ data_home }}/codex"
+        remote_src: true
+      when: codex_install
+    - name: Create symlink for codex
+      ansible.builtin.file:
+        src: "{{ data_home }}/codex/codex-x86_64-unknown-linux-musl"
+        dest: "{{ binary_home }}/codex"
+        state: link
+        force: true
+      when: codex_install

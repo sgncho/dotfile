@@ -3,6 +3,8 @@
   ansible.builtin.import_tasks: ./age.yaml
 - name: Install bat
   ansible.builtin.import_tasks: ./bat.yaml
+- name: Install codex
+  ansible.builtin.import_tasks: ./codex.yaml
 - name: Install delta
   ansible.builtin.import_tasks: ./delta.yaml
 - name: Install eza
@@ -17,5 +19,5 @@
   ansible.builtin.import_tasks: ./fzf.yaml
 - name: Install Rust toolchain
   ansible.builtin.import_tasks: ./rust.yaml
-- name: Install Bun
-  ansible.builtin.import_tasks: ./bun.yaml
+- name: Install pnpm
+  ansible.builtin.import_tasks: ./pnpm.yaml

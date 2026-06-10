@@ -55,17 +55,10 @@ export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
 # npm
 export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
 
-# bun
-export BUN_INSTALL="$XDG_DATA_HOME/bun"
-if [ -d "$BUN_INSTALL" ]; then
-  export PATH="$BUN_INSTALL/bin:$PATH"
-fi
-
-# nvm
-export NVM_DIR="$XDG_DATA_HOME/nvm"
-if [ -s "$NVM_DIR/nvm.sh" ]; then
-  . "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+# pnpm
+export PNPM_HOME="$XDG_DATA_HOME/pnpm"
+if [ -d "$PNPM_HOME" ]; then
+  export PATH="$PNPM_HOME/bin:$PNPM_HOME:$PATH"
 fi
 
 # man
@@ -75,8 +68,14 @@ else
   export MANPAGER="less -R"
 fi
 
-# claude code
-export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
-
 # codex
 export CODEX_HOME="$XDG_CONFIG_HOME/codex"
+
+# obsidian
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
+
+# go
+export PATH="$PATH:$XDG_DATA_HOME/go/bin"
+
+# SSH Secure Enclave
+export SSH_SK_PROVIDER=/usr/lib/ssh-keychain.dylib
