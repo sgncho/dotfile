@@ -17,3 +17,5 @@
   ansible.builtin.import_tasks: ./fzf.yaml
 - name: Install Rust toolchain
   ansible.builtin.import_tasks: ./rust.yaml
+- name: Install pnpm
+  ansible.builtin.import_tasks: ./pnpm.yaml

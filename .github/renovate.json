@@ -67,6 +67,14 @@
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "junegunn/fzf",
       "extractVersionTemplate": "^v?(?<version>.*)$"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^version\\.yaml$/"],
+      "matchStrings": ["pnpm_version:\\s*\"(?<currentValue>.*?)\""],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "pnpm/pnpm",
+      "extractVersionTemplate": "^v?(?<version>.*)$"
     }
   ]
 }

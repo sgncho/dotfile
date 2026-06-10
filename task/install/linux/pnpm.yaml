@@ -1,0 +1,13 @@
+---
+- name: Install pnpm standalone
+  ansible.builtin.shell: |
+    set -o pipefail
+    curl -fsSL https://get.pnpm.io/install.sh | sh -
+  args:
+    executable: /bin/bash
+    creates: "{{ data_home }}/pnpm/pnpm"
+  environment:
+    PNPM_HOME: "{{ data_home }}/pnpm"
+    PNPM_VERSION: "{{ pnpm_version }}"
+    SHELL: /bin/bash
+    ENV: "{{ data_home }}/pnpm/env"

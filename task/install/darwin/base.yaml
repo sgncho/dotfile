@@ -11,6 +11,7 @@
       - ripgrep
       - fzf
       - rustup
+      - pnpm
     state: present
 - name: Initialize Rust toolchain
   ansible.builtin.command: rustup-init -y --no-modify-path
