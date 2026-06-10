@@ -23,7 +23,6 @@ unfocused-split-opacity=0.7
 term=xterm-256color
 title=" "
 macos-titlebar-proxy-icon="hidden"
-macos-icon="paper"
 
 # ===== Keybinds =====
 keybind=global:ctrl+shift+t=new_window

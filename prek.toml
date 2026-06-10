@@ -1,0 +1,42 @@
+[[repos]]
+repo = "builtin"
+hooks = [
+  { id = "trailing-whitespace" },
+  { id = "check-added-large-files" },
+  { id = "check-case-conflict" },
+  { id = "end-of-file-fixer" },
+  { id = "fix-byte-order-marker" },
+  { id = "check-json5" },
+  { id = "check-toml" },
+  { id = "check-yaml", args = ["--allow-multiple-documents"] },
+  { id = "mixed-line-ending" },
+  { id = "detect-private-key" },
+  { id = "check-executables-have-shebangs" },
+]
+
+[[repos]]
+repo = "local"
+
+[[repos.hooks]]
+id = "ansible-lint"
+name = "ansible-lint"
+language = "system"
+entry = 'ansible-lint --fix --exclude task/install/darwin/base.yaml "$@" && git add "$@"'
+shell = "bash"
+files = { glob = "*.yaml" }
+require_serial = true
+
+[[repos.hooks]]
+id = "prettier"
+name = "prettier"
+language = "system"
+entry = 'prettier --write "$@" && git add "$@"'
+shell = "bash"
+files = { glob = [
+  "config/.profile",
+  "config/.rc.d/*.sh",
+  "config/.rc.d/*.bash",
+  "*.yaml",
+  "*.json",
+] }
+require_serial = true
