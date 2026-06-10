@@ -52,9 +52,6 @@
       "type": "registry"
     }
   },
-  "notification_panel": {
-    "button": false
-  },
   "collaboration_panel": {
     "dock": "right",
     "button": false
@@ -114,8 +111,7 @@
   /* Edit Predictions */
   "edit_predictions": {
     "provider": "zed",
-    "mode": "subtle",
-    "enabled_in_text_threads": false
+    "mode": "subtle"
   },
 
   "cursor_blink": false,
@@ -137,7 +133,7 @@
 
   /* File Types */
   "file_types": {
-    "JSONC": ["*.json", "*.jsonl"]
+    "JSONC": ["*.json"]
   },
 
   /* Diagnostics */
@@ -255,8 +251,8 @@
 
   /* Terminal */
   "terminal": {
-    "flexible": true,
-    "dock": "bottom",
+    "flexible": false,
+    "dock": "left",
     "button": true,
     "detect_venv": {
       "on": {
@@ -264,7 +260,6 @@
         "activate_script": "default"
       }
     },
-    "default_width": 560,
     "minimum_contrast": 0
   },
 
@@ -288,30 +283,40 @@
 
   /* Assistant Panel */
   "agent": {
+    "tool_permissions": {
+      "tools": {
+        "terminal": {
+          "always_allow": [
+            {
+              "pattern": "git --no-pager status"
+            },
+            {
+              "pattern": "git --no-pager diff"
+            }
+          ]
+        }
+      }
+    },
     "flexible": false,
-    "max_content_width": 540.0,
-    "new_thread_location": "local_project",
+    "default_width": 640,
     "dock": "left",
     "enable_feedback": false,
     "use_modifier_to_send": true,
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-5.2"
+      "effort": "high",
+      "enable_thinking": true,
+      "provider": "openai-subscribed",
+      "model": "gpt-5.5"
     },
     "inline_assistant_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-5-mini"
+      "provider": "openai-subscribed",
+      "model": "gpt-5.3-codex-spark"
     },
     "commit_message_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-5.2"
+      "provider": "openai-subscribed",
+      "model": "gpt-5.3-codex-spark"
     },
-    "default_profile": "minimal",
-    "model_parameters": [
-      {
-        "temperature": 0.3
-      }
-    ]
+    "default_profile": "write"
   },
 
   /* UI Font */
@@ -329,5 +334,9 @@
         "cursor": "#ffa800"
       }
     ]
+  },
+  "feature_flags": {
+    "tabular-data-preview": "on",
+    "notebooks": "on"
   }
 }
