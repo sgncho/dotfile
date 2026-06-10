@@ -3,6 +3,8 @@
   ansible.builtin.import_tasks: ./age.yaml
 - name: Install bat
   ansible.builtin.import_tasks: ./bat.yaml
+- name: Install codex
+  ansible.builtin.import_tasks: ./codex.yaml
 - name: Install delta
   ansible.builtin.import_tasks: ./delta.yaml
 - name: Install eza

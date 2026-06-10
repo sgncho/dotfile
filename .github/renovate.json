@@ -23,6 +23,14 @@
     {
       "customType": "regex",
       "managerFilePatterns": ["/^version\\.yaml$/"],
+      "matchStrings": ["codex_version:\\s*\"(?<currentValue>.*?)\""],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "openai/codex",
+      "extractVersionTemplate": "^rust-v(?<version>.*)$"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^version\\.yaml$/"],
       "matchStrings": ["delta_version:\\s*\"(?<currentValue>.*?)\""],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "dandavison/delta",
