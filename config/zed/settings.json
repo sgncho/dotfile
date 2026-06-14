@@ -303,6 +303,7 @@
     "enable_feedback": false,
     "use_modifier_to_send": true,
     "default_model": {
+      "speed": "fast",
       "effort": "high",
       "enable_thinking": true,
       "provider": "openai-subscribed",
